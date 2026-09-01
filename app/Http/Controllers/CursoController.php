@@ -50,4 +50,17 @@ class CursoController extends Controller
             return view('cursos.edit',compact('curso'));
 
         }
+
+        public function update(Request $request,$id){
+            $curso=Curso::find($id);
+            $curso->nombre=$request->nombre;
+            $curso->descripcion=$request->descripcion;
+            $curso->categoria=$request->categoria;
+
+            $curso->save();
+            //return $request->all();
+            //redirect
+            return redirect()->route('cursos.show',$curso->id);
+
+        }
 }
